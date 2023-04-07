@@ -30,8 +30,7 @@
     </div>
   </div>
   <div id="unity-fullscreen-button" style="display: none;"></div>
-  
-  <button onclick="TestGetPlayerInfo()">Push me</button>
+
 
   <script>
     const hideFullScreenButton = "true";
@@ -72,7 +71,7 @@
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
       container.className = "unity-mobile";
-      config.devicePixelRatio = Math.min(config.devicePixelRatio, 2); // added
+      config.devicePixelRatio = Math.min(config.devicePixelRatio, 2);
     }
     loadingCover.style.display = "";
 
@@ -139,6 +138,9 @@
 
       function connected(api) {
         externalApi = api;
+        externalApi.showAds({
+				  interstitial: true
+			  });
       }
 
       // пример вызова действия "Регистрация"
@@ -160,7 +162,8 @@
         });
 
       iframeApi(callbacks).then(connected, error);
-    }(window.iframeApi));
+    }(window.iframeApi)); 
+    
 
     document.body.appendChild(script);
   </script>
