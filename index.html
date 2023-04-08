@@ -31,8 +31,16 @@
   </div>
   <div id="unity-fullscreen-button" style="display: none;"></div>
 
+  <button onclick="Test()">1 кнопка</button>
+
 
   <script>
+    function Test() {
+      externalApi.showAds({
+        interstitial: true
+      });
+    }
+
     const hideFullScreenButton = "true";
     const buildUrl = "Build";
     const loaderUrl = buildUrl + "/template.loader.js";
@@ -129,7 +137,9 @@
         userConfirmCallback: function () { },
         paymentFrameItem: function (object) { },
         getGameInventoryItems: function () { },
-        adsCallback: function(context) {},
+        adsCallback: function (context) {
+          alert(context);
+        },
       };
 
       function error(err) {
@@ -138,32 +148,32 @@
 
       function connected(api) {
         externalApi = api;
-        externalApi.showAds({
-				  interstitial: true
-			  });
+        // externalApi.showAds({
+        //   interstitial: true
+        // });
       }
 
       // пример вызова действия "Регистрация"
-      $('#register').on('click', function(e) {
-            e.preventDefault();
-            externalApi.registerUser();
-        });
+      $('#register').on('click', function (e) {
+        e.preventDefault();
+        externalApi.registerUser();
+      });
 
-        // пример вызова действия "Вход"
-        $('#auth').on('click', function(e) {
-            e.preventDefault();
-            externalApi.authUser();
-        });
+      // пример вызова действия "Вход"
+      $('#auth').on('click', function (e) {
+        e.preventDefault();
+        externalApi.authUser();
+      });
 
-        // пример получения профиля
-        $('#profile').on('click', function(e) {
-            e.preventDefault();
-            externalApi.userProfile();
-        });
+      // пример получения профиля
+      $('#profile').on('click', function (e) {
+        e.preventDefault();
+        externalApi.userProfile();
+      });
 
       iframeApi(callbacks).then(connected, error);
-    }(window.iframeApi)); 
-    
+    }(window.iframeApi));
+
 
     document.body.appendChild(script);
   </script>
