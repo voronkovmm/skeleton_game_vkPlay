@@ -132,11 +132,13 @@
         getGameInventoryItems: function () { },
         adsCallback: function (context) {
           if(isTypeAdsFullscreen){
+            console.log('первая проверка');
             myGameInstance.SendMessage('Tools/Ads', 'FullscreenAdvClose')
           }
           else{
+            console.log('вторая проверка');
             console.log(context.type);
-            if(context.type === adCompleted || context.type === adDismissed){
+            if(context.type === 'adCompleted' || context.type === 'adDismissed'){
               myGameInstance.SendMessage('Tools/Ads', 'OnRewarded');
             }
             else{
