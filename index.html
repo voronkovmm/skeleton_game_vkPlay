@@ -31,16 +31,8 @@
   </div>
   <div id="unity-fullscreen-button" style="display: none;"></div>
 
-  <button onclick="Test()">1 кнопка</button>
-
 
   <script>
-    function Test() {
-      externalApi.showAds({
-        interstitial: false
-      });
-    }
-
     const hideFullScreenButton = "true";
     const buildUrl = "Build";
     const loaderUrl = buildUrl + "/template.loader.js";
@@ -159,9 +151,9 @@
 
       function connected(api) {
         externalApi = api;
-        // externalApi.showAds({
-        //   interstitial: true
-        // });
+        externalApi.showAds({
+          interstitial: true
+        });
       }
 
       // пример вызова действия "Регистрация"
