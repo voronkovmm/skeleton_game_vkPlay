@@ -135,6 +135,7 @@
             myGameInstance.SendMessage('Tools/Ads', 'FullscreenAdvClose')
           }
           else{
+            console.log(context.type);
             if(context.type === adCompleted || context.type === adDismissed){
               myGameInstance.SendMessage('Tools/Ads', 'OnRewarded');
             }
