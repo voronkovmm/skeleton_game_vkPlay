@@ -91,6 +91,7 @@
     <!-- VK PLAY -->
     var myGameInstance = null;
     var externalApi = null;
+    var isTypeAdsFullscreen = false;
 
     const script = document.createElement("script");
     script.src = loaderUrl;
@@ -138,7 +139,17 @@
         paymentFrameItem: function (object) { },
         getGameInventoryItems: function () { },
         adsCallback: function (context) {
-          alert(context);
+          if(isTypeAdsFullscreen){
+            myGameInstance.SendMessage('Tools/Ads', 'FullscreenAdvClose')
+          }
+          else{
+            if(context.type === adCompleted || context.type === adDismissed){
+              myGameInstance.SendMessage('Tools/Ads', 'OnRewarded');
+            }
+            else{
+              myGameInstance.SendMessage('Tools/Ads', 'OnRewardedError');
+            }
+          }
         },
       };
 
